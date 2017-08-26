@@ -269,6 +269,19 @@ bool Util::Pathable(const sc2::GameInfo & info, const sc2::Point2D & point)
 	return decodedPlacement;
 }
 
+size_t Util::CountSelfUnitsOfType(const ZergBot& bot, sc2::UNIT_TYPEID unitType)
+{
+	return bot.Observation()->GetUnits(Unit::Alliance::Self, sc2::IsUnit(unitType)).size();
+}
+
+size_t Util::CountTownHallTypeBuildings(const ZergBot& bot)
+{
+	return
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_HATCHERY)
+		+ Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_LAIR)
+		+ Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_HIVE);
+}
+
 bool Util::Placement(const sc2::GameInfo & info, const sc2::Point2D & point)
 {
 	sc2::Point2DI pointI((int)point.x, (int)point.y);

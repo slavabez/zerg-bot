@@ -58,5 +58,9 @@ namespace Util {
 	bool    Placement(const sc2::GameInfo& info, const sc2::Point2D& point);
 	bool    Pathable(const sc2::GameInfo& info, const sc2::Point2D& point);
 
+	// Added by me
+	size_t CountSelfUnitsOfType(const ZergBot &bot, sc2::UNIT_TYPEID unitType);
 
+	// Zerg specific
+	size_t CountTownHallTypeBuildings(const ZergBot &bot);
 }

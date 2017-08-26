@@ -9,9 +9,9 @@ class ZergBot :
 {
 public:
 
-	virtual void OnStep() final;
-	virtual void OnGameEnd() final;
-	virtual void OnUnitIdle(const Unit &unit) final;
+	void OnStep() override final;
+	void OnGameEnd() override final;
+	void OnUnitIdle(const Unit &unit) override final;
 
 
 };

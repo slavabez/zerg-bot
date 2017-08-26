@@ -1,9 +1,11 @@
 #include "ZergBot.h"
+#include "MacroManager.h"
 
 
 void ZergBot::OnStep()
 {
 	// TODO: Put commands here that execute on each step
+	MacroManager::OnStep(*this);
 }
 
 void ZergBot::OnGameEnd()
@@ -17,7 +19,9 @@ void ZergBot::OnGameEnd()
 void ZergBot::OnUnitIdle(const Unit &unit)
 {
 	switch (unit.unit_type.ToType()) {
-	case UNIT_TYPEID::ZERG_HATCHERY: {
+	case UNIT_TYPEID::ZERG_LARVA: {
+		std::cout << "A larva is idle:" << std::endl;
+
 		if (Observation()->GetMinerals() > 50) {
 			Actions()->UnitCommand(unit, ABILITY_ID::TRAIN_DRONE);
 		}
