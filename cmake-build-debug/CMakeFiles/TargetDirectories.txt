@@ -1,0 +1,3 @@
+C:/Users/bezga/source/repos/SC2API_Binary_vs2017/project/cmake-build-debug/CMakeFiles/project.dir
+C:/Users/bezga/source/repos/SC2API_Binary_vs2017/project/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bezga/source/repos/SC2API_Binary_vs2017/project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
