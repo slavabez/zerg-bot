@@ -6,7 +6,8 @@
 
 ZergBot::ZergBot():
 mac_man(*this),
-build_man(*this)
+build_man(*this),
+combat_man(*this)
 {}
 
 
@@ -18,11 +19,12 @@ void ZergBot::OnStep()
 	//sc2::SleepFor(15);
 
 	mac_man.OnStep();
+	combat_man.OnStep();
 }
 
 void ZergBot::OnGameStart()
 {
-	
+	combat_man.OnStart();
 }
 
 

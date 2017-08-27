@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuildingManager.cpp" />
+    <ClCompile Include="CombatManager.cpp" />
     <ClCompile Include="MacroManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Utilities.cpp" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuildingManager.h" />
+    <ClInclude Include="CombatManager.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="MacroManager.h" />
     <ClInclude Include="Utilities.h" />

@@ -4,6 +4,7 @@
 
 #include "MacroManager.h"
 #include "BuildingManager.h"
+#include "CombatManager.h"
 
 using namespace sc2;
 
@@ -13,6 +14,7 @@ class ZergBot : public Agent
 
 	MacroManager mac_man;
 	BuildingManager build_man;
+	CombatManager combat_man;
 
 public:
 

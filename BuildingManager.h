@@ -8,6 +8,8 @@ class BuildingManager
 	ZergBot & bot;
 public:
 	BuildingManager(ZergBot & bot): bot(bot) {};
-	~BuildingManager();
+
+	void OnStart();
+	bool OnStep();
 };
 
