@@ -11,13 +11,13 @@ int main(int argc, char* argv[]) {
     coordinator.LoadSettings(argc, argv);
 
     ZergBot bot;
-    coordinator.SetParticipants({
-        CreateParticipant(Race::Zerg, &bot),
-        CreateComputer(Race::Random)
+	coordinator.SetParticipants({
+		CreateParticipant(Race::Zerg, &bot),
+		CreateComputer(Race::Random, CheatInsane)
     });
 
     coordinator.LaunchStarcraft();
-    coordinator.StartGame(sc2::kMapBelShirVestigeLE);
+    coordinator.StartGame("Melee/Simple64.SC2Map");
 
     while (coordinator.Update()) {
     }

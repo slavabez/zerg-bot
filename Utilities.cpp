@@ -274,12 +274,39 @@ size_t Util::CountSelfUnitsOfType(const ZergBot& bot, sc2::UNIT_TYPEID unitType)
 	return bot.Observation()->GetUnits(Unit::Alliance::Self, sc2::IsUnit(unitType)).size();
 }
 
+int Util::CountNumberOfCurrentAbilitiesInProgress(const ZergBot& bot, ABILITY_ID abilityId)
+{
+	auto counter = 0;
+	auto units = bot.Observation()->GetUnits(Unit::Self);
+	for (auto const unit : units)
+	{
+		for (auto const order : unit.orders)
+		{
+			if (order.ability_id == abilityId)
+			{
+				counter++;
+			}
+		}
+	}
+	return counter;
+}
+
 size_t Util::CountTownHallTypeBuildings(const ZergBot& bot)
 {
 	return
-		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_HATCHERY)
-		+ Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_LAIR)
-		+ Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_HIVE);
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_HATCHERY) +
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_LAIR) +
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_HIVE);
+}
+
+size_t Util::CountOverlordsAndOverseers(const ZergBot& bot)
+{
+	return
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_OVERLORD) +
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_OVERLORDCOCOON) +
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_OVERLORDTRANSPORT) +
+		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_OVERSEER);
+	
 }
 
 bool Util::Placement(const sc2::GameInfo & info, const sc2::Point2D & point)

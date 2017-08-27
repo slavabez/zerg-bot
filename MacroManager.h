@@ -1,18 +1,27 @@
 #pragma once
-#include "ZergBot.h"
+
+#include <sc2api/sc2_api.h>
+
+class ZergBot;
 
 class MacroManager
 {
+
+	ZergBot & bot_;
+
 public:
-	MacroManager();
-	~MacroManager();
 
-	static void ManageDroneProduction(ZergBot & bot);
-	static void ManageOverlordProduction(ZergBot & bot);
+	MacroManager(ZergBot & bot) : bot_(bot) {};
 
-	static bool OrderDrones(ZergBot & bot, int quantity);
+	bool ManageDroneProduction();
+	bool ManageOverlordProduction();
+	bool ManageGeyserProduction();
 
-	static void OnStep(ZergBot & bot);
+	bool OrderDrones(int quantity);
+	bool OrderOverlords(int quantity);
 
+	void OnStep();
+
+	sc2::Units GetLarvae();
 };
 

@@ -129,12 +129,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="MacroManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="ZergBot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="MacroManager.h" />
     <ClInclude Include="Utilities.h" />
