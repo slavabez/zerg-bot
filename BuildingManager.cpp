@@ -29,6 +29,13 @@ bool BuildingManager::OrderExtractor()
 	{
 		return false;
 	}
+
+	// If someone is already ordered to build an extractor, skip this one
+	if (Util::CountNumberOfCurrentAbilitiesInProgress(bot, ABILITY_ID::BUILD_EXTRACTOR) > 0)
+	{
+		return false;
+	}
+
 	// Find extractor near the spawn
 	float distance = FLT_MAX;
 	sc2::Unit nearestGeyser;
@@ -100,5 +107,10 @@ sc2::Units BuildingManager::GetTownHalls()
 	types.push_back(UNIT_TYPEID::ZERG_HIVE);
 
 	return bot.Observation()->GetUnits(Unit::Self, IsUnits(types));
+}
+
+sc2::Point2D BuildingManager::GetSpawn()
+{
+	return spawn;
 }
 

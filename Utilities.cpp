@@ -296,6 +296,21 @@ sc2::Units Util::GetSelfUnitsOfType(const ZergBot& bot, sc2::UNIT_TYPEID unitTyp
 	return bot.Observation()->GetUnits(Unit::Alliance::Self, sc2::IsUnit(unitType));
 }
 
+sc2::Units Util::GetSelfUnitsOfType(const ZergBot& bot, std::vector<sc2::UNIT_TYPEID> unitTypes)
+{
+	return bot.Observation()->GetUnits(Unit::Alliance::Self, sc2::IsUnits(unitTypes));
+}
+
+sc2::Units Util::GetNeutralUnitsOfType(const ZergBot& bot, std::vector<sc2::UNIT_TYPEID> unitTypes)
+{
+	return bot.Observation()->GetUnits(Unit::Alliance::Neutral, sc2::IsUnits(unitTypes));
+}
+
+sc2::Units Util::GetNeutralUnitsOfType(const ZergBot& bot, sc2::UNIT_TYPEID unitType)
+{
+	return bot.Observation()->GetUnits(Unit::Alliance::Neutral, sc2::IsUnit(unitType));
+}
+
 size_t Util::CountTownHallTypeBuildings(const ZergBot& bot)
 {
 	return
@@ -312,6 +327,21 @@ size_t Util::CountOverlordsAndOverseers(const ZergBot& bot)
 		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_OVERLORDTRANSPORT) +
 		Util::CountSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_OVERSEER);
 	
+}
+
+sc2::Units Util::GetIdleDrones(const ZergBot& bot)
+{
+	Units drones;
+	Units allDrones = GetSelfUnitsOfType(bot, UNIT_TYPEID::ZERG_DRONE);
+	for (auto drone : allDrones)
+	{
+		if (drone.orders.size() < 1)
+		{
+			drones.push_back(drone);
+		}
+	}
+
+	return drones;
 }
 
 bool Util::Placement(const sc2::GameInfo & info, const sc2::Point2D & point)

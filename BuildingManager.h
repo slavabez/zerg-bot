@@ -9,13 +9,15 @@ class BuildingManager
 	ZergBot & bot;
 
 	bool timeToExpand = false;
-	sc2::Point2D spawn;
 	
+	sc2::Point2D spawn;
 
 
 
 public:
 	BuildingManager(ZergBot & bot): bot(bot) {};
+
+	
 
 	void OnStart();
 	bool OnStep();
@@ -24,5 +26,6 @@ public:
 	sc2::Unit GetADrone();
 
 	sc2::Units GetTownHalls();
+	sc2::Point2D GetSpawn();
 };
 

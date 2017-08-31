@@ -58,12 +58,18 @@ namespace Util {
 	bool    Placement(const sc2::GameInfo& info, const sc2::Point2D& point);
 	bool    Pathable(const sc2::GameInfo& info, const sc2::Point2D& point);
 
-	// Added by me
+	// Added by me (Slava)
 	size_t CountSelfUnitsOfType(const ZergBot &bot, sc2::UNIT_TYPEID unitType);
 	int CountNumberOfCurrentAbilitiesInProgress(const ZergBot &bot, ABILITY_ID abilityId);
 	sc2::Units GetSelfUnitsOfType(const ZergBot & bot, sc2::UNIT_TYPEID unitType);
+	sc2::Units GetSelfUnitsOfType(const ZergBot & bot, std::vector<sc2::UNIT_TYPEID> unitTypes);
+	sc2::Units GetNeutralUnitsOfType(const ZergBot& bot, sc2::UNIT_TYPEID unitType);
+	sc2::Units GetNeutralUnitsOfType(const ZergBot& bot, std::vector<sc2::UNIT_TYPEID> unitTypes);
+	sc2::Tag GetMineralPatchClosestToPos(ZergBot bot, sc2::Point2D);
 
+	
 	// Zerg specific
 	size_t CountTownHallTypeBuildings(const ZergBot &bot);
 	size_t CountOverlordsAndOverseers(const ZergBot &bot);
+	sc2::Units GetIdleDrones(const ZergBot &bot);
 }

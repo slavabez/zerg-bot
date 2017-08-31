@@ -80,7 +80,7 @@ bool MacroManager::ManageOverlordProduction()
 bool MacroManager::ManageGeyserProduction()
 {
 	// Determine if it's time to build a geyser.
-	if (Util::CountSelfUnitsOfType(bot_, UNIT_TYPEID::ZERG_EXTRACTOR) < 2 && Util::CountSelfUnitsOfType(bot_, UNIT_TYPEID::ZERG_EXTRACTOR) < 1 && bot_.Observation()->GetFoodWorkers() > 14)
+	if (Util::CountSelfUnitsOfType(bot_, UNIT_TYPEID::ZERG_EXTRACTOR) < 2 || Util::CountSelfUnitsOfType(bot_, UNIT_TYPEID::ZERG_EXTRACTOR) < 1 && bot_.Observation()->GetFoodWorkers() > 14)
 	{
 		bot_.GetBuildingManager().OrderExtractor();
 		return true;
@@ -92,6 +92,38 @@ bool MacroManager::ManageGeyserProduction()
 bool MacroManager::ManageDrones()
 {
 	// Set the ideal number of drones on hatcheries and geysers
+
+	// Find idle drones, send them to mine a mineral patch close to the base
+	Units idleDrones = Util::GetIdleDrones(bot_);
+
+	// Find nearest mineral or rich-mineral patch
+	std::vector<UNIT_TYPEID> mineralTypes;
+	mineralTypes.push_back(UNIT_TYPEID::NEUTRAL_MINERALFIELD);
+	mineralTypes.push_back(UNIT_TYPEID::NEUTRAL_MINERALFIELD750);
+
+	Units allMineralPatches = Util::GetNeutralUnitsOfType(bot_, mineralTypes);
+	Point2D spawn = bot_.GetBuildingManager().GetSpawn();
+	float distance = FLT_MAX;
+	Tag nearestPatch;
+	for (auto patch : allMineralPatches)
+	{
+		float newDistance = Distance2D(spawn, patch.pos);
+		if (newDistance < distance)
+		{
+			distance = newDistance;
+			nearestPatch = patch;
+		}
+	}
+
+	for (auto drone : idleDrones)
+	{
+		bot_.Actions()->UnitCommand(drone, ABILITY_ID::SMART, nearestPatch);
+	}
+
+	// Send drones to geisers (if more than optimal on hatchery)
+
+
+	return false;
 }
 
 bool MacroManager::OrderDrones(int quantity)
@@ -159,5 +191,6 @@ void MacroManager::OnStep()
 	ManageDroneProduction();
 	ManageOverlordProduction();
 	ManageGeyserProduction();
+	ManageDrones();
 
 }
