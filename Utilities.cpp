@@ -291,6 +291,11 @@ int Util::CountNumberOfCurrentAbilitiesInProgress(const ZergBot& bot, ABILITY_ID
 	return counter;
 }
 
+sc2::Units Util::GetSelfUnitsOfType(const ZergBot& bot, sc2::UNIT_TYPEID unitType)
+{
+	return bot.Observation()->GetUnits(Unit::Alliance::Self, sc2::IsUnit(unitType));
+}
+
 size_t Util::CountTownHallTypeBuildings(const ZergBot& bot)
 {
 	return

@@ -61,6 +61,7 @@ namespace Util {
 	// Added by me
 	size_t CountSelfUnitsOfType(const ZergBot &bot, sc2::UNIT_TYPEID unitType);
 	int CountNumberOfCurrentAbilitiesInProgress(const ZergBot &bot, ABILITY_ID abilityId);
+	sc2::Units GetSelfUnitsOfType(const ZergBot & bot, sc2::UNIT_TYPEID unitType);
 
 	// Zerg specific
 	size_t CountTownHallTypeBuildings(const ZergBot &bot);

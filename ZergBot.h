@@ -20,6 +20,8 @@ public:
 
 	ZergBot();
 
+	BuildingManager GetBuildingManager();
+
 	void OnStep() override final;
 	void OnGameStart() override final;
 	void OnGameEnd() override final;

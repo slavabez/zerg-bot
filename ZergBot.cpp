@@ -10,6 +10,11 @@ build_man(*this),
 combat_man(*this)
 {}
 
+BuildingManager ZergBot::GetBuildingManager()
+{
+	return this->build_man;
+}
+
 
 void ZergBot::OnStep()
 {
@@ -25,6 +30,8 @@ void ZergBot::OnStep()
 void ZergBot::OnGameStart()
 {
 	combat_man.OnStart();
+	build_man.OnStart();
+	mac_man.OnStart();
 }
 
 

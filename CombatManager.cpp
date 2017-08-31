@@ -12,4 +12,5 @@ void CombatManager::OnStart()
 bool CombatManager::OnStep()
 {
 	// TODO: scouitng and battle logic here
+	return false;
 }

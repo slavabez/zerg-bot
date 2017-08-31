@@ -11,11 +11,14 @@ class MacroManager
 
 public:
 
-	MacroManager(ZergBot & bot) : bot_(bot) {};
+	MacroManager(ZergBot & bot) : bot_(bot) {}
+	void OnStart();;
 
 	bool ManageDroneProduction();
 	bool ManageOverlordProduction();
 	bool ManageGeyserProduction();
+
+	bool ManageDrones();
 
 	bool OrderDrones(int quantity);
 	bool OrderOverlords(int quantity);

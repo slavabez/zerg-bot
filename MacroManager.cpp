@@ -4,8 +4,10 @@
 using namespace sc2;
 
 
-
-
+void MacroManager::OnStart()
+{
+	// TODO: Initialise things here
+}
 
 bool MacroManager::ManageDroneProduction()
 {
@@ -77,10 +79,19 @@ bool MacroManager::ManageOverlordProduction()
 
 bool MacroManager::ManageGeyserProduction()
 {
-	
-
+	// Determine if it's time to build a geyser.
+	if (Util::CountSelfUnitsOfType(bot_, UNIT_TYPEID::ZERG_EXTRACTOR) < 2 && Util::CountSelfUnitsOfType(bot_, UNIT_TYPEID::ZERG_EXTRACTOR) < 1 && bot_.Observation()->GetFoodWorkers() > 14)
+	{
+		bot_.GetBuildingManager().OrderExtractor();
+		return true;
+	}
 
 	return false;
+}
+
+bool MacroManager::ManageDrones()
+{
+	// Set the ideal number of drones on hatcheries and geysers
 }
 
 bool MacroManager::OrderDrones(int quantity)
@@ -147,5 +158,6 @@ void MacroManager::OnStep()
 {
 	ManageDroneProduction();
 	ManageOverlordProduction();
+	ManageGeyserProduction();
 
 }
